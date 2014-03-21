@@ -4,6 +4,7 @@ package is.tru.truin;
 import is.tru.adapter.NavDrawerListAdapter;
 import is.tru.model.NavDrawerItem;
 import is.tru.myndir.Constants;
+import is.tru.myndir.MyndirAdapter;
 import is.tru.myndir.MyndirFragment;
 
 import java.util.ArrayList;
@@ -219,7 +220,6 @@ public class MainActivity extends Activity {
 					String photo = c.getString(TAG_PHOTO);
 					// Adds each photo to String IMAGES (is.blikar.pictures.Constants.IMAGES)
 					Constants.IMAGES[i] = photo;
-				
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
