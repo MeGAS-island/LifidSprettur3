@@ -1,14 +1,8 @@
 package is.tru.truin;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
-import javax.mail.Message;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
+
+import util.JSONParser;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
@@ -24,16 +18,14 @@ public class SalmabokFragment extends Fragment {
 	TextView salmur;
 	JSONObject jsonObject;
 	String salmurText;
+	View rootView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
-        View rootView = inflater.inflate(R.layout.fragment_salmabok, container, false); 
-        
+        rootView = inflater.inflate(R.layout.fragment_salmabok, container, false); 
+
         new getJSONTask().execute();
-		
-		salmur = (TextView)rootView.findViewById(R.id.salmur);
-		salmur.setText(salmurText);
 		
 		return rootView;
     }
@@ -44,16 +36,12 @@ public class SalmabokFragment extends Fragment {
     	
     	protected Void doInBackground(Void...params) {
 	    	try {
-				DefaultHttpClient defaultClient = new DefaultHttpClient();
-				HttpGet httpGetRequest = new HttpGet("http://www2.tru.is/app/json.php?s=salmur&id=50");
-				HttpResponse httpResponse = defaultClient.execute(httpGetRequest);
+	    		JSONParser jParser = new JSONParser();
+				jsonObject = jParser.getJSONFromUrl("http://www2.tru.is/app/json.php?s=salmur&id=50");
 				
-				BufferedReader reader = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent(), "utf-8"));
-				String json = reader.readLine();
+				salmurText = jsonObject.getString("texti");
+
 				
-				jsonObject = new JSONObject(json);
-				
-				salmurText = (String) jsonObject.get("texti");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -62,6 +50,8 @@ public class SalmabokFragment extends Fragment {
 		@Override
 		protected void onPreExecute(){
 			super.onPreExecute();
+			
+			salmur = (TextView)rootView.findViewById(R.id.salmur);
 			CharSequence bidid = "Vinsamlega bíðið";
 			CharSequence sendi = "Sæki sálm"; 
 			pDialog = ProgressDialog.show(getActivity(), bidid, sendi, true, false);
@@ -70,6 +60,7 @@ public class SalmabokFragment extends Fragment {
 		@Override
 		protected void onPostExecute(Void aVoid){
 			super.onPostExecute(aVoid);
+			salmur.setText(salmurText);
 			pDialog.dismiss();
 		}
 
