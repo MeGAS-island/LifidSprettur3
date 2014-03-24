@@ -17,6 +17,14 @@
         android:src="@drawable/ic_bible_black"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"/>
-    
+
+    <Button
+        android:id="@+id/Salmabok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtLabel"
+        android:layout_alignRight="@+id/txtLabel"
+        android:layout_marginBottom="66dp"
+        android:text="@string/salmabok" />
 
 </RelativeLayout>
