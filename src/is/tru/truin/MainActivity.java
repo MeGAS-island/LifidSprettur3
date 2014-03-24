@@ -32,7 +32,7 @@ import android.widget.ListView;
 public class MainActivity extends Activity {
 	JSONParser jParser = new JSONParser();
 	JSONArray photos = null;
-	private static String url = "http://blikar.is/app_afrit/app/photosJSON";
+	private static String url = "http://blikar.is/app_afrit/app/truPhotos";
 	static final String TAG_INSTAGRAM = "instagram";
 	static final String TAG_PHOTO= "photo";
 	static final String TAG_USERS = "user";
