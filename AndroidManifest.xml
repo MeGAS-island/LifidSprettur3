@@ -25,6 +25,7 @@
         </activity>
         <activity android:name="is.tru.myndir.ImageGridActivity" />
         <activity android:name="is.tru.myndir.ImagePagerActivity" />
+        <activity android:name="is.tru.truin.BaenastundFragment" />
     </application>
 
 </manifest>
