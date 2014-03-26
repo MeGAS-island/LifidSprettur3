@@ -58,8 +58,8 @@ public class BaenastundFragment extends Fragment//implements OnClickListener
 		fragments.add(Fragment.instantiate(getActivity(), BaenastundSignaFragment.class.getName()));
 		fragments.add(Fragment.instantiate(getActivity(), BaenastundOrdGudsFragment.class.getName()));
 		fragments.add(Fragment.instantiate(getActivity(), BaenastundBaeninFragment.class.getName()));
-		this.mPagerAdapter =
-				new TruinPagerAdapter(getActivity().getSupportFragmentManager(), fragments);
+		//this.mPagerAdapter =
+			//	new TruinPagerAdapter(getActivity().getSupportFragmentManager(), fragments);
 		
 		pager.setAdapter(this.mPagerAdapter);
 	}
