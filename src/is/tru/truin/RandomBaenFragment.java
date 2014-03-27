@@ -18,8 +18,14 @@ import android.widget.TextView;
 public class RandomBaenFragment extends Fragment {
 	
 	TextView baen;
+	TextView titill;
+	TextView stikkord;
+	TextView kirkjuarid;
 	JSONObject jsonObject;
 	String baenText;
+	String baenTitill;
+	String baenStikkord;
+	String baenKirkjuarid;
 	View rootView;
 	
 
@@ -49,6 +55,10 @@ public class RandomBaenFragment extends Fragment {
 				jsonObject = jParser.getJSONFromUrl("http://www2.tru.is/app/json.php?s=baen&id="+ srandom);
 				
 				baenText = jsonObject.getString("texti");
+				baenTitill = jsonObject.getString("titill");
+				baenStikkord = jsonObject.getString("stikkord");
+				baenKirkjuarid = jsonObject.getString("kirkjuarid");
+				
 
 				
 			} catch (Exception e) {
@@ -61,6 +71,9 @@ public class RandomBaenFragment extends Fragment {
 			super.onPreExecute();
 			
 			baen = (TextView)rootView.findViewById(R.id.randomBaen);
+			titill = (TextView)rootView.findViewById(R.id.randomTitill);
+			stikkord = (TextView)rootView.findViewById(R.id.randomStikkord);
+			kirkjuarid = (TextView)rootView.findViewById(R.id.randomKirkjuarid);
 			CharSequence bidid = "Vinsamlega bíðið";
 			CharSequence sendi = "Sæki Bæn"; 
 			pDialog = ProgressDialog.show(getActivity(), bidid, sendi, true, false);
@@ -70,6 +83,9 @@ public class RandomBaenFragment extends Fragment {
 		protected void onPostExecute(Void aVoid){
 			super.onPostExecute(aVoid);
 			baen.setText(baenText);
+			titill.setText(baenTitill);
+			stikkord.setText(baenStikkord);
+			kirkjuarid.setText(baenKirkjuarid);
 			pDialog.dismiss();
 		}
 
