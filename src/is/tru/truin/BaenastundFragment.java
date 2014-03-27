@@ -5,9 +5,7 @@ import java.util.Random;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,7 +28,40 @@ public class BaenastundFragment extends Fragment implements OnClickListener {
         View rootView = inflater.inflate(R.layout.fragment_baenastund, container, false);
         
         Button btnHaldaAfram01 = (Button) rootView.findViewById(R.id.button_001);
-        btnHaldaAfram01.setOnClickListener(this);  
+        btnHaldaAfram01.setOnClickListener(new View.OnClickListener() {
+        	
+            @Override
+            public void onClick(View v) {
+            	
+            	Fragment newFragment = new BaenastundKyrrdFragment();
+            	
+                android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        		transaction.replace(R.id.frame_container, newFragment);
+                transaction.addToBackStack(null);
+
+                transaction.commit(); 
+
+            }
+        });
+        
+        Button btnRandomBaen = (Button) rootView.findViewById(R.id.button_RandomBaen);
+        btnRandomBaen.setOnClickListener(new View.OnClickListener() {
+        	
+            @Override
+            public void onClick(View v) {
+            	
+            	Fragment newFragment = new RandomBaenFragment();
+            	
+                android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        		transaction.replace(R.id.frame_container, newFragment);
+                transaction.addToBackStack(null);
+
+                transaction.commit(); 
+
+            }
+        });
 
         mannak = (TextView) rootView.findViewById(R.id.Mannakorn);
         context = getActivity();
@@ -41,18 +72,11 @@ public class BaenastundFragment extends Fragment implements OnClickListener {
         
         return rootView;
     }
-	
-    @Override
-    public void onClick(View v) {
 
-        Fragment newFragment = new BaenastundKyrrdFragment(); 
-        android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-        transaction.replace(R.id.frame_container, newFragment);
-        transaction.addToBackStack(null);
-
-        transaction.commit(); 
-
-    }
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+	}
   
 }

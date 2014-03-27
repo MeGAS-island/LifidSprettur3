@@ -20,6 +20,8 @@
         android:layout_marginBottom="128dp"
         android:text="Hefja bænastund"
         android:textSize="16dp" />
+    
+    
 
     <TextView
         android:id="@+id/Mannakorn"
@@ -30,5 +32,15 @@
         android:layout_marginTop="57dp"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/button_RandomBaen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button_001"
+        android:layout_alignTop="@+id/button_001"
+        android:layout_marginTop="62dp"
+        android:text="Bæn af handahófi"
+        android:textSize="16dp" />
 
 </RelativeLayout>
