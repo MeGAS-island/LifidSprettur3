@@ -1,26 +1,22 @@
 package is.tru.truin;
 
-
 import is.tru.adapter.NavDrawerListAdapter;
 import is.tru.model.NavDrawerItem;
-
 import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import util.JSONParser;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-//import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -28,9 +24,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.support.v4.app.Fragment;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 	JSONParser jParser = new JSONParser();
 	JSONArray photos = null;
 	private static String url = "http://blikar.is/app_afrit/app/truPhotos";
@@ -38,11 +33,9 @@ public class MainActivity extends Activity {
 	static final String TAG_PHOTO= "photo";
 	static final String TAG_USERS = "user";
 	
-	
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
-
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String[] navMenuTitles;
@@ -58,15 +51,11 @@ public class MainActivity extends Activity {
 		new LoadInstagramPhotos().execute();
 
 		mTitle = mDrawerTitle = getTitle();
-
 		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
-
 		navMenuIcons = getResources()
 				.obtainTypedArray(R.array.nav_drawer_icons);
-
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
-
 		navDrawerItems = new ArrayList<NavDrawerItem>();
 
 		// Bænastund
@@ -81,9 +70,7 @@ public class MainActivity extends Activity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
 		
 		navMenuIcons.recycle();
-
 		mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
-
 		adapter = new NavDrawerListAdapter(getApplicationContext(),
 				navDrawerItems);
 		mDrawerList.setAdapter(adapter);
@@ -149,45 +136,74 @@ public class MainActivity extends Activity {
 	}
 
 	private void displayView(int position) {
-		Fragment fragment = null;
 		BaenastundFragment Bfragment = null;
+		AlmanakFragment Afragment = null;
+		MyndirFragment Mfragment = null;
+		BaenirFragment Bafragment = null;
+		PostillurFragment Pfragment = null;
 		switch (position) {
 		case 0:
 			Bfragment = new BaenastundFragment();
 			break;
 		case 1:
-			fragment = new AlmanakFragment();
+			Afragment = new AlmanakFragment();
 			break;
 		case 2:
-			fragment = new MyndirFragment();
+			Mfragment = new MyndirFragment();
 			break;
 		case 3:
-			fragment = new BaenirFragment();
+			Bafragment = new BaenirFragment();
 			break;
 		case 4:
-			fragment = new PostillurFragment();
-			break;
-		case 6:
-			fragment = new BaenastundKyrrdFragment();
+			Pfragment = new PostillurFragment();
 			break;
 		default:
 			break;
 		}
 
-		if (fragment != null) {
+		if (Mfragment != null) {
 			FragmentManager fragmentManager = getFragmentManager();
-			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, fragment).commit();
+			FragmentTransaction transaction = fragmentManager.beginTransaction();
+			transaction.replace(R.id.frame_container, Mfragment);
+			transaction.commit();
 
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
 			setTitle(navMenuTitles[position]);
 			mDrawerLayout.closeDrawer(mDrawerList);
 		} else if (Bfragment != null){
-			SupportFragmentManager fragmentManager = 
-					getSupportFragmentManager();
+			FragmentManager fragmentManager = getFragmentManager();
+			FragmentTransaction transaction = fragmentManager.beginTransaction();
+			transaction.replace(R.id.frame_container, Bfragment);
+			transaction.commit();
+
+			mDrawerList.setItemChecked(position, true);
+			mDrawerList.setSelection(position);
+			setTitle(navMenuTitles[position]);
+			mDrawerLayout.closeDrawer(mDrawerList);
+		}
+		else if (Bafragment != null){
+			FragmentManager fragmentManager = getFragmentManager();
+			fragmentManager.beginTransaction();
+					.replace(R.id.frame_container, Bafragment).commit();
+
+			mDrawerList.setItemChecked(position, true);
+			mDrawerList.setSelection(position);
+			setTitle(navMenuTitles[position]);
+			mDrawerLayout.closeDrawer(mDrawerList);
+		} else if (Afragment != null){
+			FragmentManager fragmentManager = getFragmentManager();
+			fragmentManager.beginTransaction().commit();
+					.replace(R.id.frame_container, Afragment).commit();
+
+			mDrawerList.setItemChecked(position, true);
+			mDrawerList.setSelection(position);
+			setTitle(navMenuTitles[position]);
+			mDrawerLayout.closeDrawer(mDrawerList);
+		} else if (Pfragment != null){
+			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, Bfragment).commit();
+					.replace(R.id.frame_container, Pfragment).commit();
 
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);

@@ -8,9 +8,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class TruinPagerAdapter extends FragmentPagerAdapter{
 
-	private List<android.app.Fragment> fragments;
+	private List<Fragment> fragments;
 	
-	public TruinPagerAdapter(FragmentManager fm, List<android.app.Fragment> fragments) {
+	public TruinPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
 		super(fm);
 		this.fragments = fragments;
 	}
