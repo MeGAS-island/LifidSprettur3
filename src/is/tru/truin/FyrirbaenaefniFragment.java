@@ -1,7 +1,5 @@
 package is.tru.truin;
 
-
-
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 

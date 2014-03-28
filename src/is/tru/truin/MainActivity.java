@@ -174,17 +174,16 @@ public class MainActivity extends FragmentActivity {
 		} else if (Bfragment != null){
 			FragmentManager fragmentManager = getFragmentManager();
 			FragmentTransaction transaction = fragmentManager.beginTransaction();
-			transaction.replace(R.id.frame_container, Bfragment);
+			//transaction.replace(R.id.frame_container, Bfragment);
 			transaction.commit();
 
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
 			setTitle(navMenuTitles[position]);
 			mDrawerLayout.closeDrawer(mDrawerList);
-		}
-		else if (Bafragment != null){
+		} else if (Bafragment != null){
 			FragmentManager fragmentManager = getFragmentManager();
-			fragmentManager.beginTransaction();
+			fragmentManager.beginTransaction()
 					.replace(R.id.frame_container, Bafragment).commit();
 
 			mDrawerList.setItemChecked(position, true);
@@ -193,7 +192,7 @@ public class MainActivity extends FragmentActivity {
 			mDrawerLayout.closeDrawer(mDrawerList);
 		} else if (Afragment != null){
 			FragmentManager fragmentManager = getFragmentManager();
-			fragmentManager.beginTransaction().commit();
+			fragmentManager.beginTransaction()
 					.replace(R.id.frame_container, Afragment).commit();
 
 			mDrawerList.setItemChecked(position, true);
