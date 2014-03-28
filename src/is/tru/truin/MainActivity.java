@@ -3,9 +3,6 @@ package is.tru.truin;
 
 import is.tru.adapter.NavDrawerListAdapter;
 import is.tru.model.NavDrawerItem;
-import is.tru.myndir.Constants;
-import is.tru.myndir.MyndirAdapter;
-import is.tru.myndir.MyndirFragment;
 
 import java.util.ArrayList;
 
@@ -36,9 +33,10 @@ import android.support.v4.app.Fragment;
 public class MainActivity extends Activity {
 	JSONParser jParser = new JSONParser();
 	JSONArray photos = null;
-	private static String url = "http://blikar.is/app_afrit/app/photosJSON";
+	private static String url = "http://blikar.is/app_afrit/app/truPhotos";
 	static final String TAG_INSTAGRAM = "instagram";
 	static final String TAG_PHOTO= "photo";
+	static final String TAG_USERS = "user";
 	
 	
 	private DrawerLayout mDrawerLayout;
@@ -230,8 +228,9 @@ public class MainActivity extends Activity {
 				for(int i = 0; i < photos.length(); i++){
 					JSONObject c = photos.getJSONObject(i);
 					String photo = c.getString(TAG_PHOTO);
-					// Adds each photo to String IMAGES (is.blikar.pictures.Constants.IMAGES)
+					String user = c.getString(TAG_USERS);
 					Constants.IMAGES[i] = photo;
+					Constants.USERS[i] = user;
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();

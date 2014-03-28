@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 
-import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,7 +20,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class BaenastundFragment extends FragmentActivity //implements OnClickListener 
+public class BaenastundFragment extends FragmentActivity implements OnClickListener 
 {
 	
     //Button btnHaldaAfram01;
@@ -36,8 +36,46 @@ public class BaenastundFragment extends FragmentActivity //implements OnClickLis
  
         View rootView = inflater.inflate(R.layout.viewpager_layout, container, false);
         
+
      //   Button btnHaldaAfram01 = (Button) rootView.findViewById(R.id.button_001);
       //  btnHaldaAfram01.setOnClickListener(this);  
+/*
+        Button btnHaldaAfram01 = (Button) rootView.findViewById(R.id.button_001);
+        btnHaldaAfram01.setOnClickListener(new View.OnClickListener() {
+        	
+            @Override
+            public void onClick(View v) {
+            	
+            	Fragment newFragment = new BaenastundKyrrdFragment();
+            	
+                android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        		transaction.replace(R.id.frame_container, newFragment);
+                transaction.addToBackStack(null);
+
+                transaction.commit(); 
+
+            }
+        });*/
+        
+        Button btnRandomBaen = (Button) rootView.findViewById(R.id.button_RandomBaen);
+        btnRandomBaen.setOnClickListener(new View.OnClickListener() {
+        	
+            @Override
+            public void onClick(View v) {
+            	
+            	RandomBaenFragment newFragment = new RandomBaenFragment();
+            	
+                android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        		transaction.replace(R.id.frame_container, newFragment);
+                transaction.addToBackStack(null);
+
+                transaction.commit(); 
+
+            }
+        });
+
 
         mannak = (TextView) rootView.findViewById(R.id.Mannakorn);
         context = this;
@@ -52,6 +90,7 @@ public class BaenastundFragment extends FragmentActivity //implements OnClickLis
         
         return rootView;
     }
+
 	
 	private void initialisePaging() {
 		List<Fragment> fragments = new Vector<Fragment>();
@@ -59,8 +98,7 @@ public class BaenastundFragment extends FragmentActivity //implements OnClickLis
 		fragments.add(Fragment.instantiate(this, BaenastundSignaFragment.class.getName()));
 		fragments.add(Fragment.instantiate(this, BaenastundOrdGudsFragment.class.getName()));
 		fragments.add(Fragment.instantiate(this, BaenastundBaeninFragment.class.getName()));
-		this.mPagerAdapter =
-				new TruinPagerAdapter( this.getSupportFragmentManager(), fragments);
+		this.mPagerAdapter = new TruinPagerAdapter(super.getSupportFragmentManager(), fragments);
 		
 		pager.setAdapter(this.mPagerAdapter);
 	}
@@ -77,5 +115,12 @@ public class BaenastundFragment extends FragmentActivity //implements OnClickLis
         transaction.commit(); 
 
     }*/
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+	}
+
   
 }
