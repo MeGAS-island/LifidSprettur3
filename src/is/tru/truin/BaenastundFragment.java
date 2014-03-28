@@ -19,7 +19,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class BaenastundFragment extends Fragment//implements OnClickListener 
+
+public class BaenastundFragment extends FragmentActivity //implements OnClickListener 
 {
 	
     //Button btnHaldaAfram01;
@@ -39,7 +40,7 @@ public class BaenastundFragment extends Fragment//implements OnClickListener
       //  btnHaldaAfram01.setOnClickListener(this);  
 
         mannak = (TextView) rootView.findViewById(R.id.Mannakorn);
-        context = getActivity();
+        context = this;
         String[] Mannakorn = context.getResources().getStringArray(R.array.mannakorn);
         String randomMannakorn = Mannakorn[new Random().nextInt(Mannakorn.length)];
         
@@ -54,12 +55,12 @@ public class BaenastundFragment extends Fragment//implements OnClickListener
 	
 	private void initialisePaging() {
 		List<Fragment> fragments = new Vector<Fragment>();
-		fragments.add(Fragment.instantiate(getActivity(), BaenastundKyrrdFragment.class.getName()));
-		fragments.add(Fragment.instantiate(getActivity(), BaenastundSignaFragment.class.getName()));
-		fragments.add(Fragment.instantiate(getActivity(), BaenastundOrdGudsFragment.class.getName()));
-		fragments.add(Fragment.instantiate(getActivity(), BaenastundBaeninFragment.class.getName()));
-		//this.mPagerAdapter =
-			//	new TruinPagerAdapter(getActivity().getSupportFragmentManager(), fragments);
+		fragments.add(Fragment.instantiate(this, BaenastundKyrrdFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this, BaenastundSignaFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this, BaenastundOrdGudsFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this, BaenastundBaeninFragment.class.getName()));
+		this.mPagerAdapter =
+				new TruinPagerAdapter( this.getSupportFragmentManager(), fragments);
 		
 		pager.setAdapter(this.mPagerAdapter);
 	}

@@ -17,7 +17,7 @@ import util.JSONParser;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Fragment;
+//import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -31,6 +31,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.support.v4.app.Fragment;
 
 public class MainActivity extends Activity {
 	JSONParser jParser = new JSONParser();
@@ -151,9 +152,10 @@ public class MainActivity extends Activity {
 
 	private void displayView(int position) {
 		Fragment fragment = null;
+		BaenastundFragment Bfragment = null;
 		switch (position) {
 		case 0:
-			fragment = new BaenastundFragment();
+			Bfragment = new BaenastundFragment();
 			break;
 		case 1:
 			fragment = new AlmanakFragment();
@@ -178,6 +180,16 @@ public class MainActivity extends Activity {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.frame_container, fragment).commit();
+
+			mDrawerList.setItemChecked(position, true);
+			mDrawerList.setSelection(position);
+			setTitle(navMenuTitles[position]);
+			mDrawerLayout.closeDrawer(mDrawerList);
+		} else if (Bfragment != null){
+			SupportFragmentManager fragmentManager = 
+					getSupportFragmentManager();
+			fragmentManager.beginTransaction()
+					.replace(R.id.frame_container, Bfragment).commit();
 
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
