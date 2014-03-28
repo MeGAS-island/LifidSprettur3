@@ -47,7 +47,6 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
 		new LoadInstagramPhotos().execute();
 
 		mTitle = mDrawerTitle = getTitle();
@@ -160,7 +159,6 @@ public class MainActivity extends FragmentActivity {
 		default:
 			break;
 		}
-
 		if (Mfragment != null) {
 			FragmentManager fragmentManager = getFragmentManager();
 			FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -172,9 +170,9 @@ public class MainActivity extends FragmentActivity {
 			setTitle(navMenuTitles[position]);
 			mDrawerLayout.closeDrawer(mDrawerList);
 		} else if (Bfragment != null){
-			FragmentManager fragmentManager = getFragmentManager();
-			FragmentTransaction transaction = fragmentManager.beginTransaction();
-			//transaction.replace(R.id.frame_container, Bfragment);
+			android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+			android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+			transaction.replace(R.id.frame_container, Bfragment);
 			transaction.commit();
 
 			mDrawerList.setItemChecked(position, true);
