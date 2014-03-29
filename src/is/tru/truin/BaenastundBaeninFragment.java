@@ -32,14 +32,14 @@ public class BaenastundBaeninFragment extends Fragment implements OnClickListene
     @Override
     public void onClick(View v) {
 
-        Fragment newFragment = new BaenastundBlessunFragment(); 
+       /* Fragment newFragment = new BaenastundBlessunFragment(); 
         android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
         transaction.replace(R.id.frame_container, newFragment);
         transaction.addToBackStack(null);
 
         transaction.commit(); 
-
+*/
     }
   
 }

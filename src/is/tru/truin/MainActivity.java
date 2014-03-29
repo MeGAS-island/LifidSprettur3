@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import util.JSONParser;
 
 import android.annotation.SuppressLint;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
@@ -135,14 +136,14 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	private void displayView(int position) {
-		BaenastundFragment Bfragment = null;
+		BaenastundBlessunFragment Bfragment = null;
 		AlmanakFragment Afragment = null;
 		MyndirFragment Mfragment = null;
 		BaenirFragment Bafragment = null;
 		PostillurFragment Pfragment = null;
 		switch (position) {
 		case 0:
-			Bfragment = new BaenastundFragment();
+			Bfragment = new BaenastundBlessunFragment();
 			break;
 		case 1:
 			Afragment = new AlmanakFragment();
@@ -170,8 +171,8 @@ public class MainActivity extends FragmentActivity {
 			setTitle(navMenuTitles[position]);
 			mDrawerLayout.closeDrawer(mDrawerList);
 		} else if (Bfragment != null){
-			android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-			android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+			FragmentManager fragmentManager = getFragmentManager();
+			FragmentTransaction transaction = fragmentManager.beginTransaction();
 			transaction.replace(R.id.frame_container, Bfragment);
 			transaction.commit();
 
