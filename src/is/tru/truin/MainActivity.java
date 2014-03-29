@@ -63,8 +63,7 @@ public class MainActivity extends FragmentActivity {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 		navDrawerItems = new ArrayList<NavDrawerItem>();
-		
-		this.initialisePaging();
+		pager = (ViewPager) findViewById(R.id.viewpager);
 
 		// Bænastund
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
@@ -82,6 +81,7 @@ public class MainActivity extends FragmentActivity {
 		adapter = new NavDrawerListAdapter(getApplicationContext(),
 				navDrawerItems);
 		mDrawerList.setAdapter(adapter);
+		
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
@@ -106,6 +106,8 @@ public class MainActivity extends FragmentActivity {
 		if (savedInstanceState == null) {
 			displayView(0);
 		}
+		
+		this.initialisePaging();
 	}
 
 	private class SlideMenuClickListener implements
@@ -241,10 +243,10 @@ public class MainActivity extends FragmentActivity {
 	private void initialisePaging() {
 		List<Fragment> fragments = new Vector<Fragment>();
 		//fragments.add(Fragment.instantiate(this, BaenastundFragment.class.getName()));
-		fragments.add(Fragment.instantiate(this, BaenastundKyrrdFragment.class.getName()));
-		fragments.add(Fragment.instantiate(this, BaenastundSignaFragment.class.getName()));
-		fragments.add(Fragment.instantiate(this, BaenastundOrdGudsFragment.class.getName()));
-		fragments.add(Fragment.instantiate(this, BaenastundBaeninFragment.class.getName()));
+		//fragments.add(Fragment.instantiate(this, BaenastundKyrrdFragment.class.getName()));
+		//fragments.add(Fragment.instantiate(this, BaenastundSignaFragment.class.getName()));
+		//fragments.add(Fragment.instantiate(this, BaenastundOrdGudsFragment.class.getName()));
+		//fragments.add(Fragment.instantiate(this, BaenastundBaeninFragment.class.getName()));
 		this.mPagerAdapter = new TruinPagerAdapter(super.getSupportFragmentManager(), fragments);
 		
 		pager.setAdapter(this.mPagerAdapter);

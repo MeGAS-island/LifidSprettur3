@@ -1,9 +1,8 @@
 package is.tru.truin;
 
-
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,14 +30,14 @@ public class BaenastundKyrrdFragment extends Fragment implements OnClickListener
 	
     @Override
     public void onClick(View v) {
-
-        Fragment newFragment = new BaenastundSignaFragment(); 
-        android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+/*
+        BaenastundSignaFragment newFragment = new BaenastundSignaFragment(); 
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
         transaction.replace(R.id.frame_container, newFragment);
         transaction.addToBackStack(null);
 
-        transaction.commit(); 
+        transaction.commit(); */
 
     }
   
