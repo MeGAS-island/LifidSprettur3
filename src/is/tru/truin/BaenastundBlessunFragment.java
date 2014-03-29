@@ -34,8 +34,7 @@ public class BaenastundBlessunFragment extends Fragment implements OnClickListen
 
 		transaction.replace(R.id.frame_container, newFragment);
         transaction.commit(); */
-		Intent i = new Intent(getActivity(), BaenastundFragment.class);
-		startActivity(i);
+
 		
 	}
 }

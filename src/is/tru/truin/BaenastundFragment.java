@@ -5,13 +5,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,7 +21,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class BaenastundFragment extends FragmentActivity implements OnClickListener 
+public class BaenastundFragment extends Fragment implements OnClickListener 
 {
 	
     //Button btnHaldaAfram01;
@@ -35,6 +36,8 @@ public class BaenastundFragment extends FragmentActivity implements OnClickListe
             Bundle savedInstanceState) {
  
         View rootView = inflater.inflate(R.layout.viewpager_layout, container, false);
+        
+        Log.d("swipe", "bænastund byrja");
         
 
      //   Button btnHaldaAfram01 = (Button) rootView.findViewById(R.id.button_001);
@@ -66,7 +69,7 @@ public class BaenastundFragment extends FragmentActivity implements OnClickListe
             	
             	RandomBaenFragment newFragment = new RandomBaenFragment();
             	
-                android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
         		transaction.replace(R.id.frame_container, newFragment);
                 transaction.addToBackStack(null);
@@ -78,7 +81,7 @@ public class BaenastundFragment extends FragmentActivity implements OnClickListe
 
 
         mannak = (TextView) rootView.findViewById(R.id.Mannakorn);
-        context = this;
+        context = getActivity();
         String[] Mannakorn = context.getResources().getStringArray(R.array.mannakorn);
         String randomMannakorn = Mannakorn[new Random().nextInt(Mannakorn.length)];
         
@@ -86,13 +89,13 @@ public class BaenastundFragment extends FragmentActivity implements OnClickListe
         
         mannak.setText(randomMannakorn);
         
-        this.initialisePaging();
+    //    this.initialisePaging();
         
         return rootView;
     }
 
-	
-	private void initialisePaging() {
+
+	/*private void initialisePaging() {
 		List<Fragment> fragments = new Vector<Fragment>();
 		fragments.add(Fragment.instantiate(this, BaenastundKyrrdFragment.class.getName()));
 		fragments.add(Fragment.instantiate(this, BaenastundSignaFragment.class.getName()));
@@ -101,7 +104,7 @@ public class BaenastundFragment extends FragmentActivity implements OnClickListe
 		this.mPagerAdapter = new TruinPagerAdapter(super.getSupportFragmentManager(), fragments);
 		
 		pager.setAdapter(this.mPagerAdapter);
-	}
+	}*/
 	/*
     @Override
     public void onClick(View v) {
@@ -121,6 +124,6 @@ public class BaenastundFragment extends FragmentActivity implements OnClickListe
 		// TODO Auto-generated method stub
 		
 	}
-
   
 }
+

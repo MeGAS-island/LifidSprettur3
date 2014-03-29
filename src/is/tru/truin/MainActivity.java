@@ -3,13 +3,15 @@ package is.tru.truin;
 import is.tru.adapter.NavDrawerListAdapter;
 import is.tru.model.NavDrawerItem;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import util.JSONParser;
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
@@ -17,7 +19,9 @@ import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -43,6 +47,8 @@ public class MainActivity extends FragmentActivity {
 	private TypedArray navMenuIcons;
 	private ArrayList<NavDrawerItem> navDrawerItems;
 	private NavDrawerListAdapter adapter;
+	ViewPager pager;
+	TruinPagerAdapter mPagerAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,8 @@ public class MainActivity extends FragmentActivity {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 		navDrawerItems = new ArrayList<NavDrawerItem>();
+		
+		this.initialisePaging();
 
 		// Bænastund
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
@@ -228,6 +236,18 @@ public class MainActivity extends FragmentActivity {
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		mDrawerToggle.onConfigurationChanged(newConfig);
+	}
+	
+	private void initialisePaging() {
+		List<Fragment> fragments = new Vector<Fragment>();
+		//fragments.add(Fragment.instantiate(this, BaenastundFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this, BaenastundKyrrdFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this, BaenastundSignaFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this, BaenastundOrdGudsFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this, BaenastundBaeninFragment.class.getName()));
+		this.mPagerAdapter = new TruinPagerAdapter(super.getSupportFragmentManager(), fragments);
+		
+		pager.setAdapter(this.mPagerAdapter);
 	}
 	
 	class LoadInstagramPhotos extends AsyncTask<String, String, String> {
