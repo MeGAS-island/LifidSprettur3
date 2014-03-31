@@ -277,15 +277,15 @@ public class MainActivity extends FragmentActivity {
 			fragments.add(3, new BaenastundOrdGudsFragment());
 			fragments.add(4, new BaenastundBaeninFragment());
 			
-			this.mPagerAdapter = new TruinPagerAdapter(super.getSupportFragmentManager(), fragments);
+	//		this.mPagerAdapter = new TruinPagerAdapter(super.getSupportFragmentManager(), fragments);
 			
-			pager.setAdapter(this.mPagerAdapter);
+		//	pager.setAdapter(this.mPagerAdapter);
 		}
 		else {
 			fragments.clear();
 			mPagerAdapter.notifyDataSetChanged();
 		}
-		
+
 		this.mPagerAdapter = new TruinPagerAdapter(super.getSupportFragmentManager(), fragments);
 		
 		pager.setAdapter(this.mPagerAdapter);
