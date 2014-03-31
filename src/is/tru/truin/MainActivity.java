@@ -4,7 +4,6 @@ import is.tru.adapter.NavDrawerListAdapter;
 import is.tru.model.NavDrawerItem;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,7 +20,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
+import is.tru.truin.TruinViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -47,7 +46,7 @@ public class MainActivity extends FragmentActivity {
 	private TypedArray navMenuIcons;
 	private ArrayList<NavDrawerItem> navDrawerItems;
 	private NavDrawerListAdapter adapter;
-	ViewPager pager;
+	TruinViewPager pager;
 	TruinPagerAdapter mPagerAdapter;
 
 	@Override
@@ -63,7 +62,7 @@ public class MainActivity extends FragmentActivity {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 		navDrawerItems = new ArrayList<NavDrawerItem>();
-		pager = (ViewPager) findViewById(R.id.viewpager);
+		pager = (TruinViewPager) findViewById(R.id.viewpager);
 
 		// Bænastund
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
@@ -106,8 +105,6 @@ public class MainActivity extends FragmentActivity {
 		if (savedInstanceState == null) {
 			displayView(0);
 		}
-		
-		this.initialisePaging();
 	}
 
 	private class SlideMenuClickListener implements
@@ -146,14 +143,14 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	private void displayView(int position) {
-		BaenastundBlessunFragment Bfragment = null;
+		boolean baenastund = false;
 		AlmanakFragment Afragment = null;
 		MyndirFragment Mfragment = null;
 		BaenirFragment Bafragment = null;
 		PostillurFragment Pfragment = null;
 		switch (position) {
 		case 0:
-			Bfragment = new BaenastundBlessunFragment();
+			baenastund = true;
 			break;
 		case 1:
 			Afragment = new AlmanakFragment();
@@ -175,26 +172,28 @@ public class MainActivity extends FragmentActivity {
 			FragmentTransaction transaction = fragmentManager.beginTransaction();
 			transaction.replace(R.id.frame_container, Mfragment);
 			transaction.commit();
-
+			if(pager.getPagingEnabled() == true) pager.setPagingEnabled(true);
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
 			setTitle(navMenuTitles[position]);
 			mDrawerLayout.closeDrawer(mDrawerList);
-		} else if (Bfragment != null){
-			FragmentManager fragmentManager = getFragmentManager();
+		} else if (baenastund == true){
+			/*FragmentManager fragmentManager = getFragmentManager();
 			FragmentTransaction transaction = fragmentManager.beginTransaction();
 			transaction.replace(R.id.frame_container, Bfragment);
-			transaction.commit();
+			transaction.commit();*/
+			
+			this.initialisePaging();
 
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
 			setTitle(navMenuTitles[position]);
-			mDrawerLayout.closeDrawer(mDrawerList);
+			mDrawerLayout.closeDrawer(mDrawerList); 
 		} else if (Bafragment != null){
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.frame_container, Bafragment).commit();
-
+			if(pager.getPagingEnabled() == true) pager.setPagingEnabled(true);
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
 			setTitle(navMenuTitles[position]);
@@ -203,7 +202,7 @@ public class MainActivity extends FragmentActivity {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.frame_container, Afragment).commit();
-
+			if(pager.getPagingEnabled() == true) pager.setPagingEnabled(true);
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
 			setTitle(navMenuTitles[position]);
@@ -212,7 +211,7 @@ public class MainActivity extends FragmentActivity {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.frame_container, Pfragment).commit();
-
+			if(pager.getPagingEnabled() == true) pager.setPagingEnabled(true);
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
 			setTitle(navMenuTitles[position]);
@@ -252,9 +251,9 @@ public class MainActivity extends FragmentActivity {
 		
 		fragments.add(new BaenastundFragment());
 		fragments.add(new BaenastundKyrrdFragment());
-		//fragments.add(Fragment.instantiate(this, BaenastundSignaFragment.class.getName()));
-		//fragments.add(Fragment.instantiate(this, BaenastundOrdGudsFragment.class.getName()));
-		//fragments.add(Fragment.instantiate(this, BaenastundBaeninFragment.class.getName()));
+		fragments.add(new BaenastundSignaFragment());
+		fragments.add(new BaenastundOrdGudsFragment());
+		fragments.add(new BaenastundBaeninFragment());
 		
 		return fragments;
 	}

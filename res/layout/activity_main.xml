@@ -6,19 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     
-    <android.support.v4.view.ViewPager
+    <is.tru.truin.TruinViewPager
 	    android:id="@+id/viewpager"
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent">
-	</android.support.v4.view.ViewPager>
+	</is.tru.truin.TruinViewPager>
 
-    <!-- Framelayout to display Fragments -->
     <FrameLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!-- Listview to display slider menu -->
     <ListView
         android:id="@+id/list_slidermenu"
         android:layout_width="240dp"
