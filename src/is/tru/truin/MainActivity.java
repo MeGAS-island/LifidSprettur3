@@ -241,15 +241,22 @@ public class MainActivity extends FragmentActivity {
 	}
 	
 	private void initialisePaging() {
-		List<Fragment> fragments = new Vector<Fragment>();
-		//fragments.add(Fragment.instantiate(this, BaenastundFragment.class.getName()));
-		//fragments.add(Fragment.instantiate(this, BaenastundKyrrdFragment.class.getName()));
-		//fragments.add(Fragment.instantiate(this, BaenastundSignaFragment.class.getName()));
-		//fragments.add(Fragment.instantiate(this, BaenastundOrdGudsFragment.class.getName()));
-		//fragments.add(Fragment.instantiate(this, BaenastundBaeninFragment.class.getName()));
+		List<Fragment> fragments = getFragments();
 		this.mPagerAdapter = new TruinPagerAdapter(super.getSupportFragmentManager(), fragments);
 		
 		pager.setAdapter(this.mPagerAdapter);
+	}
+	
+	private List<Fragment> getFragments(){
+		List<Fragment> fragments = new ArrayList<Fragment>();
+		
+		fragments.add(new BaenastundFragment());
+		fragments.add(new BaenastundKyrrdFragment());
+		//fragments.add(Fragment.instantiate(this, BaenastundSignaFragment.class.getName()));
+		//fragments.add(Fragment.instantiate(this, BaenastundOrdGudsFragment.class.getName()));
+		//fragments.add(Fragment.instantiate(this, BaenastundBaeninFragment.class.getName()));
+		
+		return fragments;
 	}
 	
 	class LoadInstagramPhotos extends AsyncTask<String, String, String> {

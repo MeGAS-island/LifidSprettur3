@@ -40,5 +40,10 @@ public class BaenastundKyrrdFragment extends Fragment implements OnClickListener
         transaction.commit(); */
 
     }
+    
+    public static Fragment newInstance(String string) {
+		BaenastundKyrrdFragment f = new BaenastundKyrrdFragment();
+		return f;
+	}
   
 }

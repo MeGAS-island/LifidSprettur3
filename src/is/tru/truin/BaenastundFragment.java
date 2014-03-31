@@ -119,6 +119,11 @@ public class BaenastundFragment extends Fragment implements OnClickListener
 		// TODO Auto-generated method stub
 		
 	}
+
+	public static Fragment newInstance(String string) {
+		BaenastundFragment f = new BaenastundFragment();
+		return f;
+	}
   
 }
 

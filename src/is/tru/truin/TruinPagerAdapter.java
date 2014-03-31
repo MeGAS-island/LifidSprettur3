@@ -16,9 +16,9 @@ public class TruinPagerAdapter extends FragmentPagerAdapter{
 	}
 	
 	@Override
-	public Fragment getItem(int arg0) {
+	public Fragment getItem(int position) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.fragments.get(position);
 	}
 
 	@Override
