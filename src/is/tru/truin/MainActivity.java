@@ -48,6 +48,8 @@ public class MainActivity extends FragmentActivity {
 	private NavDrawerListAdapter adapter;
 	TruinViewPager pager;
 	TruinPagerAdapter mPagerAdapter;
+	List<Fragment> fragments;
+	boolean pageron = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -172,7 +174,12 @@ public class MainActivity extends FragmentActivity {
 			FragmentTransaction transaction = fragmentManager.beginTransaction();
 			transaction.replace(R.id.frame_container, Mfragment);
 			transaction.commit();
-			if(pager.getPagingEnabled() == true) pager.setPagingEnabled(true);
+			
+			if(pager.getPagingEnabled() == true) {
+				pager.setPagingEnabled(false);
+				this.initialisePaging(false);
+			}
+			
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
 			setTitle(navMenuTitles[position]);
@@ -182,8 +189,13 @@ public class MainActivity extends FragmentActivity {
 			FragmentTransaction transaction = fragmentManager.beginTransaction();
 			transaction.replace(R.id.frame_container, Bfragment);
 			transaction.commit();*/
-			
-			this.initialisePaging();
+			if(pageron == false) {
+				this.initialisePaging(true);
+			}
+			else if(pager.getPagingEnabled() == false){
+				this.initialisePaging(true);
+				pager.setPagingEnabled(true);
+			}
 
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
@@ -193,7 +205,12 @@ public class MainActivity extends FragmentActivity {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.frame_container, Bafragment).commit();
-			if(pager.getPagingEnabled() == true) pager.setPagingEnabled(true);
+			
+			if(pager.getPagingEnabled() == true) {
+				pager.setPagingEnabled(false);
+				this.initialisePaging(false);
+			}
+			
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
 			setTitle(navMenuTitles[position]);
@@ -202,7 +219,12 @@ public class MainActivity extends FragmentActivity {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.frame_container, Afragment).commit();
-			if(pager.getPagingEnabled() == true) pager.setPagingEnabled(true);
+			
+			if(pager.getPagingEnabled() == true) {
+				pager.setPagingEnabled(false);
+				this.initialisePaging(false);
+			}
+			
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
 			setTitle(navMenuTitles[position]);
@@ -211,7 +233,12 @@ public class MainActivity extends FragmentActivity {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.frame_container, Pfragment).commit();
-			if(pager.getPagingEnabled() == true) pager.setPagingEnabled(true);
+			
+			if(pager.getPagingEnabled() == true) {
+				pager.setPagingEnabled(false);
+				this.initialisePaging(false);
+			}
+			
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
 			setTitle(navMenuTitles[position]);
@@ -239,8 +266,26 @@ public class MainActivity extends FragmentActivity {
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 	
-	private void initialisePaging() {
-		List<Fragment> fragments = getFragments();
+	private void initialisePaging(boolean add) {
+		fragments = new ArrayList<Fragment>();
+		pageron = true;
+		
+		if(add==true) {
+			fragments.add(0, new BaenastundFragment());
+			fragments.add(1, new BaenastundKyrrdFragment());
+			fragments.add(2, new BaenastundSignaFragment());
+			fragments.add(3, new BaenastundOrdGudsFragment());
+			fragments.add(4, new BaenastundBaeninFragment());
+			
+			this.mPagerAdapter = new TruinPagerAdapter(super.getSupportFragmentManager(), fragments);
+			
+			pager.setAdapter(this.mPagerAdapter);
+		}
+		else {
+			fragments.clear();
+			mPagerAdapter.notifyDataSetChanged();
+		}
+		
 		this.mPagerAdapter = new TruinPagerAdapter(super.getSupportFragmentManager(), fragments);
 		
 		pager.setAdapter(this.mPagerAdapter);
@@ -257,6 +302,7 @@ public class MainActivity extends FragmentActivity {
 		
 		return fragments;
 	}
+	
 	
 	class LoadInstagramPhotos extends AsyncTask<String, String, String> {
 		

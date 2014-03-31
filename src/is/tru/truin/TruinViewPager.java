@@ -1,7 +1,5 @@
 package is.tru.truin;
 
-import java.text.AttributedCharacterIterator.Attribute;
-
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -9,7 +7,7 @@ import android.view.MotionEvent;
 
 public class TruinViewPager extends ViewPager {
 	
-	private boolean enabled;
+	private boolean enabled=false;
 	
 	public TruinViewPager(Context context, AttributeSet attrs) {
 		super(context, attrs);
