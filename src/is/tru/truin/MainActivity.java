@@ -172,7 +172,7 @@ public class MainActivity extends FragmentActivity {
 		if (Mfragment != null) {
 			FragmentManager fragmentManager = getFragmentManager();
 			FragmentTransaction transaction = fragmentManager.beginTransaction();
-			transaction.replace(R.id.frame_container, Mfragment);
+			transaction.replace(R.id.frame_container, Mfragment, "myndir");
 			transaction.commit();
 			
 			if(pager.getPagingEnabled() == true) {
@@ -185,10 +185,36 @@ public class MainActivity extends FragmentActivity {
 			setTitle(navMenuTitles[position]);
 			mDrawerLayout.closeDrawer(mDrawerList);
 		} else if (baenastund == true){
-			/*FragmentManager fragmentManager = getFragmentManager();
+			FragmentManager fragmentManager = getFragmentManager();
 			FragmentTransaction transaction = fragmentManager.beginTransaction();
-			transaction.replace(R.id.frame_container, Bfragment);
+			/*transaction.remove();
 			transaction.commit();*/
+			android.app.Fragment f;
+			
+			if(fragmentManager.findFragmentByTag("myndir")!=null) {
+				f = fragmentManager.findFragmentByTag("myndir");
+				transaction.remove(f);
+				Log.d("m", "myndir");
+			}
+			else if(fragmentManager.findFragmentByTag("baenir")!=null) {
+				f = fragmentManager.findFragmentByTag("baenir");
+				transaction.remove(f);
+				transaction.commit();
+				Log.d("m", "baenir");
+			}
+			else if(fragmentManager.findFragmentByTag("postillur")!=null) {
+				f = fragmentManager.findFragmentByTag("postillur");
+				transaction.remove(f);
+				transaction.commit();
+				Log.d("m", "postillur");
+			}
+			else if(fragmentManager.findFragmentByTag("almanak")!=null) {
+				f = fragmentManager.findFragmentByTag("almanak");
+				transaction.remove(f);
+				transaction.commit();
+				Log.d("m", "almanak");
+			}
+				
 			if(pageron == false) {
 				this.initialisePaging(true);
 			}
@@ -204,7 +230,7 @@ public class MainActivity extends FragmentActivity {
 		} else if (Bafragment != null){
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, Bafragment).commit();
+					.replace(R.id.frame_container, Bafragment, "baenir").commit();
 			
 			if(pager.getPagingEnabled() == true) {
 				pager.setPagingEnabled(false);
@@ -218,7 +244,7 @@ public class MainActivity extends FragmentActivity {
 		} else if (Afragment != null){
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, Afragment).commit();
+					.replace(R.id.frame_container, Afragment, "almanak").commit();
 			
 			if(pager.getPagingEnabled() == true) {
 				pager.setPagingEnabled(false);
@@ -232,7 +258,7 @@ public class MainActivity extends FragmentActivity {
 		} else if (Pfragment != null){
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, Pfragment).commit();
+					.replace(R.id.frame_container, Pfragment, "postillur").commit();
 			
 			if(pager.getPagingEnabled() == true) {
 				pager.setPagingEnabled(false);
@@ -276,6 +302,7 @@ public class MainActivity extends FragmentActivity {
 			fragments.add(2, new BaenastundSignaFragment());
 			fragments.add(3, new BaenastundOrdGudsFragment());
 			fragments.add(4, new BaenastundBaeninFragment());
+			fragments.add(5, new BaenastundBlessunFragment());
 			
 	//		this.mPagerAdapter = new TruinPagerAdapter(super.getSupportFragmentManager(), fragments);
 			
@@ -299,6 +326,7 @@ public class MainActivity extends FragmentActivity {
 		fragments.add(new BaenastundSignaFragment());
 		fragments.add(new BaenastundOrdGudsFragment());
 		fragments.add(new BaenastundBaeninFragment());
+		fragments.add(new BaenastundBlessunFragment());
 		
 		return fragments;
 	}

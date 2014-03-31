@@ -30,7 +30,7 @@ public class BaenastundFragment extends Fragment implements OnClickListener
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
-        View rootView = inflater.inflate(R.layout.viewpager_layout, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_baenastund, container, false);
         
         Log.d("swipe", "bænastund byrja");
         
@@ -55,7 +55,7 @@ public class BaenastundFragment extends Fragment implements OnClickListener
 
             }
         });*/
-        
+    /*    
         Button btnRandomBaen = (Button) rootView.findViewById(R.id.button_RandomBaen);
         btnRandomBaen.setOnClickListener(new View.OnClickListener() {
         	
@@ -73,7 +73,7 @@ public class BaenastundFragment extends Fragment implements OnClickListener
 
             }
         });
-
+*/
 
         mannak = (TextView) rootView.findViewById(R.id.Mannakorn);
         context = getActivity();

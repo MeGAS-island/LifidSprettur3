@@ -11,18 +11,6 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/ic_praying" />
 
-    <Button
-        android:id="@+id/button_001"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="128dp"
-        android:text="Hefja bænastund"
-        android:textSize="16dp" />
-    
-    
-
     <TextView
         android:id="@+id/Mannakorn"
         android:layout_width="wrap_content"
@@ -33,14 +21,14 @@
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
-        android:id="@+id/button_RandomBaen"
+    <TextView
+        android:id="@+id/Hefjabaenastund"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button_001"
-        android:layout_alignTop="@+id/button_001"
-        android:layout_marginTop="62dp"
-        android:text="Bæn af handahófi"
-        android:textSize="16dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="32dp"
+        android:layout_toRightOf="@+id/imageView1"
+        android:text="Hefja bænastund"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
