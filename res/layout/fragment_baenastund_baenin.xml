@@ -12,5 +12,15 @@
           android:layout_marginBottom="56dp"
           android:text="Taktu undir þessi bænaorð:"
           android:textSize="16dp" />
+
+      <TextView
+          android:id="@+id/baendagsins"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/text_view_01"
+          android:layout_below="@+id/text_view_01"
+          android:layout_marginTop="90dp"
+          android:text=""
+          android:textAppearance="?android:attr/textAppearanceMedium" />
     
 </RelativeLayout>
