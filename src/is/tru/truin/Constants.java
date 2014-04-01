@@ -5,4 +5,8 @@ public class Constants {
 	public static String[] IMAGES = new String[num];
 	public static String[] USERS = new String[num];
 	
+	public static String ar_selected = "";
+	public static String manudur_selected = "";
+	public static String dagur_selected = "";
+	
 }
